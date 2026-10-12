@@ -1,0 +1,40 @@
+.restored-workspace .demo-results {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  align-items: stretch;
+}
+
+.restored-workspace .demo-results figure {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.restored-workspace .demo-results img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+}
+
+.restored-workspace .demo-results figcaption {
+  min-height: 76px;
+  padding: 16px;
+  align-content: start;
+}
+
+.restored-workspace .demo-results figure:last-child figcaption {
+  border-right: 0;
+}
+
+@media (max-width: 520px) {
+  .restored-workspace .demo-results {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .restored-workspace .demo-results figcaption {
+    border-right: 0;
+  }
+}
