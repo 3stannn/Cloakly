@@ -1,0 +1,87 @@
+export const sources = {
+  cloaklyDemo: {
+    id: "cloaklyDemo",
+    title: "About this Cloakly demo",
+    authors: "",
+    publisher: "Cloakly — first-party implementation explanation",
+    published: "Current supplied demo",
+    url: "/#simulation",
+    internal: true,
+  },
+  nistSyntheticContent: {
+    id: "nistSyntheticContent",
+    title: "Reducing Risks Posed by Synthetic Content: An Overview of Technical Approaches to Digital Content Transparency",
+    authors: "Bilva Chandra, Jesse Dunietz, Kathleen Roberts, Yooyoung Lee, Peter Fontana, and George Awad",
+    publisher: "National Institute of Standards and Technology (NIST), AI 100-4",
+    published: "20 November 2024",
+    url: "https://doi.org/10.6028/NIST.AI.100-4",
+  },
+  photoGuard: {
+    id: "photoGuard",
+    title: "Raising the Cost of Malicious AI-Powered Image Editing",
+    authors: "Hadi Salman, Alaa Khaddaj, Guillaume Leclerc, Andrew Ilyas, and Aleksander Madry",
+    publisher: "arXiv preprint 2302.06588",
+    published: "13 February 2023",
+    url: "https://arxiv.org/abs/2302.06588",
+  },
+  esafetyConsent: {
+    id: "esafetyConsent",
+    title: "Consent for sharing photos and videos",
+    authors: "",
+    publisher: "eSafety Commissioner (Australia)",
+    published: "Guidance page",
+    url: "https://www.esafety.gov.au/young-people/consent-sharing-photos-videos",
+  },
+  esafetyGuide: {
+    id: "esafetyGuide",
+    title: "The eSafety Guide",
+    authors: "",
+    publisher: "eSafety Commissioner (Australia)",
+    published: "Guidance directory",
+    url: "https://www.esafety.gov.au/key-topics/esafety-guide",
+  },
+  esafetyDigitalReputation: {
+    id: "esafetyDigitalReputation",
+    title: "Digital reputation",
+    authors: "",
+    publisher: "eSafety Commissioner (Australia)",
+    published: "Guidance page",
+    url: "https://www.esafety.gov.au/key-topics/staying-safe/digital-reputation",
+  },
+  esafetyReport: {
+    id: "esafetyReport",
+    title: "Report online harm",
+    authors: "",
+    publisher: "eSafety Commissioner (Australia)",
+    published: "Guidance page",
+    url: "https://www.esafety.gov.au/report",
+  },
+  esafetyImpersonation: {
+    id: "esafetyImpersonation",
+    title: "Impersonation, catfishing and identity theft",
+    authors: "",
+    publisher: "eSafety Commissioner (Australia), LGBTIQ+ Learning Lounge",
+    published: "Updated 1 October 2026",
+    url: "https://www.esafety.gov.au/lgbtiq/learning-lounge/meeting-online/impersonation-catfishing-identity-theft",
+  },
+  usCopyrightPhotography: {
+    id: "usCopyrightPhotography",
+    title: "Photography and Copyright",
+    authors: "",
+    publisher: "U.S. Copyright Office",
+    published: "Information circular",
+    url: "https://www.copyright.gov/engage/docs/photography.pdf",
+  },
+  usCopyrightFairUse: {
+    id: "usCopyrightFairUse",
+    title: "Fair Use (FAQ)",
+    authors: "",
+    publisher: "U.S. Copyright Office",
+    published: "FAQ",
+    url: "https://www.copyright.gov/help/faq/faq-fairuse.html",
+  },
+};
+
+export function getSources(sourceIds = []) {
+  return sourceIds.map((id) => sources[id]).filter(Boolean);
+}
