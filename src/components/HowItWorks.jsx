@@ -19,7 +19,7 @@ function HowItWorks() {
       <div className="steps-panel">
         <div className="steps-intro">
           <span className="eyebrow">How Cloakly works</span>
-          <h2>
+          <h2 id="how-it-works-heading" tabIndex={-1}>
             Three simple steps.
             <br />
             <span>One safer portrait.</span>

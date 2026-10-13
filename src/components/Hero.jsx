@@ -5,7 +5,7 @@ function Hero() {
     <section className="hero page-width" id="top">
       <div className="hero-copy">
         <span className="eyebrow">Adversarial Perturbations</span>
-        <h1>
+        <h1 id="page-heading" tabIndex={-1}>
           Protect yourself
           <br />
           before the attack.

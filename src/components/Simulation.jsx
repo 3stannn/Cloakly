@@ -13,7 +13,7 @@ function Simulation() {
   const [step, setStep] = useState(-1);
   return (
     <section className="simulation-section page-width" id="simulation">
-      <div className="simulation-heading"><span className="eyebrow">Interactive simulation</span><h2>See the protection<br />in action.</h2><p>Explore the flow with our test portrait and supplied example outputs.</p></div>
+      <div className="simulation-heading"><span className="eyebrow">Interactive simulation</span><h2 id="simulation-heading" tabIndex={-1}>See the protection<br />in action.</h2><p>Explore the flow with our test portrait and supplied example outputs.</p></div>
       <div className="demo-workspace restored-workspace">
         <div className="step-rail">{steps.map((label, index) => <div className={`step-item ${step >= index ? "active" : ""}`} key={label}><span>{index + 1}</span><div><strong>{label}</strong><small>{details[index]}</small></div></div>)}</div>
         {step === -1 && <div className="upload-zone"><span className="upload-icon">＋</span><strong>Choose a portrait</strong><small>Try the supplied test portrait to explore Cloakly.</small><button className="button button-primary" onClick={() => setStep(0)}>Use demo portrait</button></div>}

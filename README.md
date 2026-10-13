@@ -1,16 +1,36 @@
-# React + Vite
+# Cloakly
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A static React learning hub about manipulated media, responsible sharing, and the limits of adversarial perturbations. The homepage retains the supplied simulation portrait and preview images; it does not process uploaded images or run an AI service.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```sh
+npm install
+npm run dev
+```
 
-## React Compiler
+Production and quality checks:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+npm run build
+npm run lint
+npm test
+npm run preview
+```
 
-## Expanding the ESLint configuration
+## Routes and content
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `/` — existing landing page and supplied demo; `#top`, `#simulation`, and `#how-it-works` remain available.
+- `/learn` — three topic lessons, each with five flashcards and five quiz questions.
+- `/learn/:topicSlug` — lesson; `/learn/:topicSlug/quiz` — quiz and completion results.
+- `/blog` — curated articles; `/blog/:articleSlug` — article detail and references.
+
+Educational content is trusted, structured local data. Source records are shared by lessons, quiz explanations, and articles. Article review dates record source checks, not ongoing monitoring. When editing content, verify the claims against the primary sources, update the review date, and run the content validation tests.
+
+Quiz answers and results exist only in memory. Reloading, retrying, or leaving and returning starts a fresh attempt. Completion permits a downloadable SVG participation acknowledgement at any score; it is not a credential or assurance of protection. The site has no learner accounts, progress persistence, backend, or analytics.
+
+## Static hosting
+
+The root `vercel.json` supplies the SPA rewrite to `/index.html` required for direct links and refreshes on Vercel. Existing static files are served normally. Other static hosts need an equivalent fallback to `index.html` for app routes. Build output is `dist`.
+
+Client-side titles and descriptions update during navigation; this release does not prerender route-specific metadata for crawlers. Deployment is separate from local validation.
