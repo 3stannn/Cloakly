@@ -108,7 +108,7 @@ function QuizAttempt({ topic }) {
               <p>This acknowledges completion only. It is not a certification, endorsement, security assurance, or proof of mastery.</p>
             </div>
             <div className="result-actions">
-              <button className="button button-primary" type="button" onClick={() => downloadBadge(topic.title, completedOn, topic.slug)}>Download SVG acknowledgement</button>
+              <button className="button button-primary" type="button" onClick={() => downloadBadge(topic.title, completedOn, topic.slug)}>Download PDF badge</button>
               <button className="button button-outline" type="button" onClick={retryQuiz}>Retry quiz</button>
               <Link className="text-link" to={"/learn/" + topic.slug}>Review lesson</Link>
             </div>

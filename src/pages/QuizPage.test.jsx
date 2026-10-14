@@ -72,7 +72,7 @@ describe("quiz attempt flow", () => {
 
     expect(screen.getByRole("heading", { name: "You scored 5 of 5." })).toBeTruthy();
     expect(screen.getByText(/This acknowledges completion only/)).toBeTruthy();
-    expect(screen.getByRole("button", { name: "Download SVG acknowledgement" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Download PDF badge" })).toBeTruthy();
     for (const question of topic.questions) {
       expect(screen.getByText(question.explanation)).toBeTruthy();
     }

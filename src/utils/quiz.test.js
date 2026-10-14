@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { downloadBadge, generateBadgeSvg, getLocalCompletionDate, getScore } from "./quiz.js";
+import { downloadBadge, generateBadgePdf, getLocalCompletionDate, getScore } from "./quiz.js";
 
 afterEach(() => {
   vi.useRealTimers();
@@ -18,24 +18,25 @@ describe("quiz utilities", () => {
     expect(getLocalCompletionDate(new Date(2026, 9, 13, 23, 59))).toBe("2026-10-13");
   });
 
-  it("creates well-formed SVG and escapes topic and date text", () => {
-    const svg = generateBadgeSvg('<script>& "topic"\'s</script>', "2026-10-13&later");
-    const parsed = new DOMParser().parseFromString(svg, "image/svg+xml");
+  it("creates a square PDF badge with quiz-specific content", () => {
+    const pdf = generateBadgePdf("Responsible sharing & privacy", "2026-10-13");
+    const text = new TextDecoder().decode(pdf);
 
-    expect(parsed.querySelector("parsererror")).toBeNull();
-    expect(parsed.documentElement.localName).toBe("svg");
-    expect(parsed.querySelector("script")).toBeNull();
-    expect(svg).toContain("&lt;script&gt;&amp; &quot;topic&quot;&apos;s&lt;/script&gt;");
-    expect(svg).toContain("2026-10-13&amp;later");
-    expect(svg).toMatch(/participation acknowledged/i);
-    expect(svg).toMatch(/completion only/i);
-    expect(svg).toMatch(/not a certification/i);
-    expect(svg).toMatch(/security assurance/i);
-    expect(svg).toMatch(/proof of mastery/i);
-    expect(svg).not.toMatch(/learner@example\.com|account[-_ ]?id|user[-_ ]?id/i);
+    expect(text.startsWith("%PDF-1.4")).toBe(true);
+    expect(text).toContain("/MediaBox [0 0 324 324]");
+    expect(text).toContain("RESPONSIBLE SHARING &");
+    expect(text).toContain("PRIVACY");
+    expect(text).toContain("2026-10-13");
+    expect(text).toMatch(/PARTICIPATION ACKNOWLEDGED/i);
+    expect(text).toMatch(/COMPLETION ONLY - NO CERTIFICATION/i);
+    expect(text).toMatch(/NO ENDORSEMENT OR SECURITY ASSURANCE/i);
+    expect(text).not.toMatch(/learner@example\.com|account[-_ ]?id|user[-_ ]?id/i);
+
+    const otherQuizPdf = generateBadgePdf("Deepfake basics", "2026-10-13");
+    expect(new TextDecoder().decode(otherQuizPdf)).not.toBe(text);
   });
 
-  it("downloads an SVG Blob, starts the anchor download, then revokes its object URL", async () => {
+  it("downloads a quiz-specific PDF Blob, then revokes its object URL", async () => {
     const createObjectURL = vi.fn(() => "blob:cloakly-acknowledgement");
     const revokeObjectURL = vi.fn();
     const priorCreate = Object.getOwnPropertyDescriptor(URL, "createObjectURL");
@@ -52,8 +53,8 @@ describe("quiz utilities", () => {
 
       expect(objectUrl).toBe("blob:cloakly-acknowledgement");
       expect(blob).toBeInstanceOf(Blob);
-      expect(blob.type).toBe("image/svg+xml;charset=utf-8");
-      expect(anchor.download).toBe("cloakly-participation-adversarial-perturbations.svg");
+      expect(blob.type).toBe("application/pdf");
+      expect(anchor.download).toBe("cloakly-participation-adversarial-perturbations.pdf");
       expect(anchor.href).toBe("blob:cloakly-acknowledgement");
       expect(document.body.contains(anchor)).toBe(false);
       expect(click).toHaveBeenCalledTimes(1);

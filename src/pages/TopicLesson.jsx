@@ -42,10 +42,10 @@ function LessonContent({ topic }) {
         </div>
       </div>
 
-      <aside className="takeaway-panel">
+      {/* <aside className="takeaway-panel">
         <span className="eyebrow">Key takeaway</span>
         <p>{topic.takeaway}</p>
-      </aside>
+      </aside> */}
 
       <section className="flashcard-section" aria-labelledby="flashcard-heading">
         <div className="section-title-row">

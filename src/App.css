@@ -3,7 +3,6 @@
   --muted: #777872;
   --line: rgba(24, 25, 23, 0.11);
   --panel: #e3e3df;
-  --purple: #7243e8;
   --white: #fafaf8;
 }
 .app-shell {
@@ -276,9 +275,6 @@
 .feature-graphic b {
   right: 25%;
   bottom: 18%;
-}
-.purple {
-  color: #7543db;
 }
 .blue {
   color: #416caa;
